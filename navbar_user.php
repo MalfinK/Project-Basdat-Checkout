@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon -->
-    <link rel="icon" href="https://github.com/MalfinK/ain-website/blob/main/img/all%20in%20one.gif" type="image/x-icon">
+    <link rel="icon" href="./asset/all in one.gif" type="image/x-icon">
     <title>AIN Website</title>
 
     <!-- bootstrap -->
@@ -14,9 +14,6 @@
 
     <!-- my style -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- swipper -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 </head>
 
 <body>
@@ -29,7 +26,7 @@
                 <img src="asset/all in one.gif" alt="Logo" width="40" class="d-inline-block align-text-top"
                     style="border-radius: 8px;">
             </a>
-            <span class="fw-bold"><a href="#" class="text-decoration-none text-dark">All In One</a></span>
+            <span class="fw-bold"><a href="home.php" class="text-decoration-none text-dark">All In One</a></span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -38,10 +35,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" aria-current="page" href="home.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="shop.html#shop">Shop</a>
+                        <a class="nav-link" href="shop.php">Shop</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="#">Order</a>
@@ -52,40 +49,13 @@
                         <a class="nav-link" aria-current="page" href="#"><i
                                 class="fa-solid fa-cart-shopping"></i><span class="ms-2">Keranjang</span></a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-user"></i><span class="ms-2">User</span></a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
     </nav>
-
-    <!-- home -->
-    <!-- Slider main container -->
-    <div class="swiper mySwiper">
-        <!-- Additional required wrapper -->
-        <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide">
-                <img src="asset/Swipper1.png" alt="Slide 1">
-            </div>
-            <div class="swiper-slide">
-                <img src="asset/Swipper2.png" alt="Slide 2">
-            </div>
-            <div class="swiper-slide">
-                <img src="asset/Swipper3.png" alt="Slide 3">
-            </div>
-        </div>
-        <!-- If we need pagination -->
-        <div class="swiper-pagination"></div>
-
-        <!-- If we need navigation buttons -->
-        <!-- <div class="swiper-button-prev"></div> -->
-        <!-- <div class="swiper-button-next"></div> -->
-
-        <!-- If we need scrollbar -->
-        <!-- <div class="swiper-scrollbar"></div> -->
-    </div>
 
 
     <!-- bootstrap -->
@@ -95,9 +65,6 @@
 
     <!-- awesome -->
     <script src="https://kit.fontawesome.com/b47e03d51e.js" crossorigin="anonymous"></script>
-
-    <!-- swipper -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
     <!-- my script -->
     <script src="script.js"></script>
