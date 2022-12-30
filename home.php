@@ -60,12 +60,12 @@
 
     <!-- awesome -->
     <script src="https://kit.fontawesome.com/b47e03d51e.js" crossorigin="anonymous"></script>
+    
+    <!-- swipper -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
     <!-- my script -->
     <script src="script.js"></script>
-
-    <!-- swipper -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 </body>
 
 </html>
