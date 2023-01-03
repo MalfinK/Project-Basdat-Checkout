@@ -1,3 +1,20 @@
+<?php
+require 'connect.php';
+
+function query($query)
+{
+    global $connect;
+    $result = mysqli_query($connect, $query);
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+    return $rows;
+}
+$produk = query("SELECT * FROM produk");
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -32,37 +49,17 @@
       <div class="row">
         <div class="col-xl-12">
           <div class="d-flex justify-content-center">
-            <div class="card text-center" style="width: 18rem;">
-              <img src="asset/keyby.png
-              " class="card-img-top"
-                style="width: 18rem; margin-left: -1.1rem; margin-top: 3rem; margin-bottom: 3rem; transform: rotate(-0.25turn);"
-                alt="...">
+            <?php foreach ($produk as $row) : ?>
+            <div class="card text-center me-3" style="width: 18rem;">
+              <img src="asset/<?= $row['foto'] ?>" class=" card-img-top" alt="<?= $row['nama_produk'] ?>">
               <div class="card-body">
-                <h5 class="card-title fw-bold">Mechanical Keyboard</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                  the card's content.</p>
+                <h5 class="card-title fw-bold"><?= $row['nama_produk'] ?></h5>
+                <p class="card-text"><?= $row['deskripsi_produk'] ?></p>
+                <h3><?= $row['harga_satuan'] ?></h3>
                 <a href="#" id="button" class="btn btn-primary">Add to cart</a>
               </div>
             </div>
-            <div class="card ms-3 text-center" style="width: 18rem;">
-              <img src="asset/mouse.png" class="card-img-top"
-                style="width: 11rem; margin: auto; margin-bottom:0.75rem; padding-top:20px;" alt="...">
-              <div class="card-body">
-                <h5 class="card-title fw-bold">Gaming Mouse</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                  the card's content.</p>
-                <a href="#" id="button" class="btn btn-primary">Add to cart</a>
-              </div>
-            </div>
-            <div class="card ms-3 text-center" style="width: 18rem;">
-              <img src="asset/hs.png" style="width: 16rem; margin: auto; padding-top:20px;" class="card-img-top"
-                alt="...">
-              <div class="card-body">
-                <h5 class="card-title fw-bold" style=" margin-top: 0.65rem;">Gaming Headset</h5>
-                <p class="card-text"><span>Rp </span><?= number_format($fetch_product['price']); ?><span>,-</span></p>
-                <a href="#" id="button" class="btn btn-primary">Add to cart</a>
-              </div>
-            </div>
+            <?php endforeach; ?>
           </div>
         </div>
       </div>
@@ -83,11 +80,17 @@
   <!-- my script -->
   <script src="script.js"></script>
 </body>
+
 <style>
 #button {
   position: absolute;
   bottom: 20px;
   left: 6rem;
+}
+
+.card-img-top {
+  max-height: 10rem;
+
 }
 </style>
 
