@@ -1,6 +1,18 @@
 /* umum */
 :root {
+    --main-color: #2980b9;
+    --orange: #f39c12;
+    --red: #e74c3c;
+    --black: #333;
+    --white: #fff;
+    --light-color: #666;
+    --light-bg: #eee;
     --nav-color: #4070f4;
+    --blue: #2980b9;
+
+    --light-white: #ccc;
+    --border: 0.2rem solid var(--black);
+    --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
 section {
@@ -14,7 +26,7 @@ section {
     font-weight: bold;
 }
 
-/* content di shop.html */
+/* content di shop.php */
 .card {
     margin-top: 3rem;
     padding: 1rem;
@@ -91,4 +103,26 @@ body {
     width: 100%;
     height: 100%;
     /* object-fit: cover; */
+}
+
+/* content di cart.php */
+.cart-total {
+    max-width: 50rem;
+    margin: 0 auto;
+    margin-top: 3rem;
+    background-color: var(--white);
+    border: var(--border);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+.cart-total p {
+    font-size: 2.5rem;
+    color: var(--black);
+    margin-bottom: 2rem;
+}
+
+.cart-total p span {
+    color: var(--red);
 }

@@ -9,8 +9,7 @@
     <title>AIN Website</title>
 
     <!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <!-- my style -->
     <link rel="stylesheet" href="style.css">
@@ -77,7 +76,7 @@
                     </table>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-12">
                     <h3 class="text-end">Total : 14000</h3>
                 </div>
@@ -86,19 +85,23 @@
                 <div class="col-12">
                     <button type="button" class="btn btn-success">Checkout</button>
                 </div>
+            </div> -->
+            <div class="cart-total">
+                <p>Total Biaya : <span>Rp <?= number_format($grand_total); ?>,-</span></p>
+                <a href="shop.php" class="option-btn">Lanjut Belanja</a>
+                <a href="cart.php?delete_all" class="delete-btn <?= ($grand_total > 1) ? '' : 'disabled'; ?>" onclick="return confirm('delete all from cart?');">Hapus Semua Barang</a>
+                <a href="checkout.php" class="btn <?= ($grand_total > 1) ? '' : 'disabled'; ?>">Lanjut Pembayaran</a>
             </div>
         </div>
     </section>
 
 
     <!-- bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
     <!-- awesome -->
     <script src="https://kit.fontawesome.com/b47e03d51e.js" crossorigin="anonymous"></script>
-    
+
     <!-- swipper -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
