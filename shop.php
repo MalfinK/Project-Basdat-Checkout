@@ -96,13 +96,13 @@ $produk = query("SELECT * FROM produk");
     }
 
     .harga {
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
 
     .stars {
         font-size: 1.2rem;
         text-align: left;
-        color: var(--orange);
+        color: orange;
     }
 </style>
 
