@@ -49,13 +49,20 @@ $produk = query("SELECT * FROM produk");
                 <div class="col-xl-12">
                     <div class="d-flex justify-content-center">
                         <?php foreach ($produk as $row) : ?>
-                            <div class="card text-center me-3" style="width: 18rem;">
+                            <div class="card me-3" style="width: 18rem;">
                                 <img src="asset/<?= $row['foto'] ?>" class=" card-img-top" alt="<?= $row['nama_produk'] ?>">
                                 <div class="card-body">
                                     <h5 class="card-title fw-bold"><?= $row['nama_produk'] ?></h5>
-                                    <p class="card-text"><?= $row['deskripsi_produk'] ?></p>
+                                    <div class="stars">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <p class="card-text text-justify"><?= $row['deskripsi_produk'] ?></p>
                                     <h3 class="harga"><span>Rp.</span><?= $row['harga_satuan'] ?></h3>
-                                    <a href="#" id="button" class="btn btn-primary">Add to cart</a>
+                                    <button type="submit" class="btn btn-info fw-bold text-center" name="add_to_cart">Add To Cart</button>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -80,11 +87,8 @@ $produk = query("SELECT * FROM produk");
 </body>
 
 <style>
-    #button {
-        position: absolute;
-        bottom: 0px;
-        left: 6rem;
-        margin-bottom: 10px;
+    .btn {
+        color: white;
     }
 
     .card-img-top {
@@ -93,6 +97,12 @@ $produk = query("SELECT * FROM produk");
 
     .harga {
         margin-bottom: 40px;
+    }
+
+    .stars {
+        font-size: 1.2rem;
+        text-align: left;
+        color: var(--orange);
     }
 </style>
 
