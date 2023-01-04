@@ -62,7 +62,7 @@ $produk = query("SELECT * FROM produk");
                                     </div>
                                     <p class="card-text text-justify"><?= $row['deskripsi_produk'] ?></p>
                                     <h3 class="harga"><span>Rp.</span><?= $row['harga_satuan'] ?></h3>
-                                    <a href="cart.php?produk_id=<?= $row['id']; ?>" type="submit" class="btn btn-info fw-bold text-center" name="add_to_cart">Add To Cart</a>
+                                    <a href="function.php?produk_id=<?= $row['id']; ?>" type="submit" class="btn btn-info fw-bold text-center" name="add_to_cart">Add To Cart</a>
                                 </div>
                             </div>
                         <?php endforeach; ?>
