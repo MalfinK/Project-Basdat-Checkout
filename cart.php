@@ -26,8 +26,7 @@ $produk = query("SELECT * FROM produk");
     <title>AIN Website</title>
 
     <!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <!-- my style -->
     <link rel="stylesheet" href="style.css">
@@ -52,13 +51,12 @@ $produk = query("SELECT * FROM produk");
                         <div class="col-xl-12">
                             <div class="d-flex justify-content-center">
                                 <?php foreach ($produk as $row) : ?>
-                                <div class="card me-3" style="width: 18rem;">
-                                    <img src="asset/<?= $row['foto'] ?>" class=" card-img-top"
-                                        alt="<?= $row['nama_produk'] ?>">
-                                    <div class="card-body">
+                                    <div class="card me-3" style="width: 18rem;">
+                                        <img src="asset/<?= $row['foto'] ?>" class=" card-img-top" alt="<?= $row['nama_produk'] ?>">
+                                        <div class="card-body">
 
-                                        <!-- <h5 class="card-title fw-bold"><?= $row['nama_produk'] ?></h5> -->
-                                        <!-- <div class="stars">
+                                            <!-- <h5 class="card-title fw-bold"><?= $row['nama_produk'] ?></h5> -->
+                                            <!-- <div class="stars">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
@@ -66,20 +64,18 @@ $produk = query("SELECT * FROM produk");
                                             <i class="fa-solid fa-star"></i>
                                         </div>
                                         <p class="card-text text-justify"><?= $row['deskripsi_produk'] ?></p> -->
-                                        <h3 class="harga"><span>Rp.</span><?= $row['harga_satuan'] ?></h3>
-                                        <div class="input-group input-group-sm mb-3">
-                                            <span class="input-group-text" id="inputGroup-sizing-sm">qty</span>
-                                            <input type="number" class="form-control" aria-label="Sizing example input"
-                                                aria-describedby="inputGroup-sizing-sm">
-                                            <button type="button" class="btn1 btn-outline-dark">
-                                                <img src="http://cdn.onlinewebfonts.com/svg/img_386644.png" style="height:10px ">
-                                            </button>
+                                            <h3 class="harga"><span>Rp.</span><?= $row['harga_satuan'] ?></h3>
+                                            <div class="input-group input-group-sm mb-3">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">qty</span>
+                                                <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                                <button type="button" class="btn1 btn-outline-dark">
+                                                    <img src="http://cdn.onlinewebfonts.com/svg/img_386644.png" style="height:10px ">
+                                                </button>
+                                            </div>
+                                            <h3 class="harga"><span>Harga total: Rp.</span></h3>
+                                            <button type="submit" class="btn btn-info fw-bold text-center me-md-2" name="add_to_cart">Delete item</button>
                                         </div>
-                                        <h3 class="harga"><span>Harga total: Rp.</span></h3>
-                                        <button type="submit" class="btn btn-info fw-bold text-center me-md-2"
-                                            name="add_to_cart">Delete item</button>
                                     </div>
-                                </div>
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -143,9 +139,8 @@ $produk = query("SELECT * FROM produk");
             <div class="cart-total">
                 <p>Total Biaya : <span>Rp ,-</span></p>
                 <!-- <?= number_format($grand_total); ?> -->
-                <button href="shop.php" class="option-btn">Lanjut Belanja</button>
-                <a href="cart.php?delete_all" class="delete-btn <?= ($grand_total > 1) ? '' : 'disabled'; ?>"
-                    onclick="return confirm('delete all from cart?');">Hapus Semua Barang</a>
+                <a href="shop.php" class="option-btn">Lanjut Belanja</a>
+                <a href="cart.php?delete_all" class="delete-btn <?= ($grand_total > 1) ? '' : 'disabled'; ?>" onclick="return confirm('delete all from cart?');">Hapus Semua Barang</a>
                 <a href="checkout.php" class="btn <?= ($grand_total > 1) ? '' : 'disabled'; ?>">Lanjut Pembayaran</a>
             </div>
         </div>
@@ -153,8 +148,7 @@ $produk = query("SELECT * FROM produk");
 
 
     <!-- bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
 
     <!-- awesome -->
@@ -174,26 +168,57 @@ $produk = query("SELECT * FROM produk");
 
 
 <style>
-.btn {
-    color: white;
-}
+    .cart .btn,
+    .delete-btn,
+    .option-btn {
+        display: block;
+        width: 100%;
+        margin-top: 1rem;
+        border-radius: 0.5rem;
+        padding: 1rem 3rem;
+        font-size: 1.7rem;
+        text-transform: capitalize;
+        color: var(--white);
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+    }
 
-.btn1 {
-    margin: 0px 20px;
-    background-color: orange;
-}
+    .cart .btn:hover,
+    .delete-btn:hover,
+    .option-btn:hover {
+        background-color: var(--black);
+    }
 
-.card-img-top {
-    min-height: 30rem;
-}
+    .cart .btn {
+        /* color: white; */
+        background-color: var(--main-color);
+    }
 
-.harga {
-    margin-bottom: 40px;
-}
+    .cart .btn1 {
+        margin: 0px 20px;
+        background-color: orange;
+    }
 
-.stars {
-    font-size: 1.2rem;
-    text-align: left;
-    color: var(--orange);
-}
+    .cart .option-btn {
+        background-color: var(--orange);
+    }
+
+    .cart .delete-btn {
+        background-color: var(--red);
+    }
+
+    .cart .card-img-top {
+        min-height: 30rem;
+    }
+
+    .cart .harga {
+        margin-bottom: 40px;
+    }
+
+    .cart .stars {
+        font-size: 1.2rem;
+        text-align: left;
+        color: var(--orange);
+    }
 </style>
