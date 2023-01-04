@@ -10,7 +10,7 @@ if (isset($_GET['produk_id'])) {
     $query = "INSERT INTO cart (produk_id, jumlah_barang, jumlah_harga) VALUES ('$produk_id', '1', '$harga')";
     $result = mysqli_query($connect, $query);
     if ($result) {
-        header("Location: shop.php");
+        header("Location: cart.php");
     } else {
         echo "Error: " . $query . "<br>" . mysqli_error($connect);
     }

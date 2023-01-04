@@ -49,21 +49,23 @@ require 'connect.php';
                         <div class="col-xl-12">
                             <div class="d-flex justify-content-center">
                                 <?php foreach ($produk as $row) : ?>
-                                    <div class="card me-3" style="width: 18rem;">
-                                        <img src="asset/<?= $row['foto'] ?>" class=" card-img-top" alt="<?= $row['nama_produk'] ?>">
-                                        <div class="card-body">
-                                            <h3 class="harga"><span>Rp.</span><?= $row['harga_satuan'] ?></h3>
-                                            <div class="input-group input-group-sm mb-3">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">qty</span>
-                                                <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                                                <button type="button" class="btn1 btn-outline-dark">
-                                                    <img src="http://cdn.onlinewebfonts.com/svg/img_386644.png" style="height:10px ">
-                                                </button>
+                                    <form action="" method="post">
+                                        <div class="card me-3" style="width: 18rem;">
+                                            <img src="asset/<?= $row['foto'] ?>" class=" card-img-top" alt="<?= $row['nama_produk'] ?>">
+                                            <div class="card-body">
+                                                <h3 class="harga"><span>Rp.</span><?= $row['harga_satuan'] ?></h3>
+                                                <div class="input-group input-group-sm mb-3">
+                                                    <span class="input-group-text" id="inputGroup-sizing-sm">qty</span>
+                                                    <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="1" min="1" max="100">
+                                                    <button type="button" class="btn1 btn-outline-dark">
+                                                        <img src="http://cdn.onlinewebfonts.com/svg/img_386644.png" style="height:10px ">
+                                                    </button>
+                                                </div>
+                                                <h3 class="harga"><span>Harga total: Rp.</span></h3>
+                                                <button type="submit" class="btn btn-info fw-bold text-center me-md-2" name="add_to_cart">Delete item</button>
                                             </div>
-                                            <h3 class="harga"><span>Harga total: Rp.</span></h3>
-                                            <button type="submit" class="btn btn-info fw-bold text-center me-md-2" name="add_to_cart">Delete item</button>
                                         </div>
-                                    </div>
+                                    </form>
                                 <?php endforeach; ?>
                             </div>
                         </div>
