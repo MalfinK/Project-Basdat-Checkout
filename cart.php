@@ -13,6 +13,27 @@ require 'connect.php';
 // }
 // $produk = query("SELECT * FROM produk");
 
+if (isset($_POST['delete'])) {
+    $cart_id = $_POST['cart_id'];
+    $delete_cart_item = $connect->prepare("DELETE FROM cart WHERE id = ?");
+    $delete_cart_item->execute([$cart_id]);
+}
+
+if (isset($_GET['delete_all'])) {
+    $delete_cart_item = $connect->prepare("DELETE FROM cart");
+    $delete_cart_item->execute();
+    header('location:cart.php');
+}
+
+if (isset($_POST['update_qty'])) {
+    $cart_id = $_POST['cart_id'];
+    $jumlah_barang = $_POST['jumlah_barang'];
+    $jumlah_barang = filter_var($jumlah_barang, FILTER_SANITIZE_STRING);
+    $update_qty = $connect->prepare("UPDATE cart SET jumlah_barang = ? WHERE id = ?");
+    $update_qty->execute([$jumlah_barang, $cart_id]);
+    $message[] = 'Jumlah keranjang belanja anda telah diperbarui';
+}
+
 ?>
 
 <!doctype html>
@@ -48,25 +69,42 @@ require 'connect.php';
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="d-flex justify-content-center">
-                                <?php foreach ($produk as $row) : ?>
-                                    <form action="" method="post">
-                                        <div class="card me-3" style="width: 18rem;">
-                                            <img src="asset/<?= $row['foto'] ?>" class=" card-img-top" alt="<?= $row['nama_produk'] ?>">
-                                            <div class="card-body">
-                                                <h3 class="harga"><span>Rp.</span><?= $row['harga_satuan'] ?></h3>
-                                                <div class="input-group input-group-sm mb-3">
-                                                    <span class="input-group-text" id="inputGroup-sizing-sm">qty</span>
-                                                    <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="1" min="1" max="100">
-                                                    <button type="button" class="btn1 btn-outline-dark">
-                                                        <img src="http://cdn.onlinewebfonts.com/svg/img_386644.png" style="height:10px ">
-                                                    </button>
+                                <?php
+                                $grand_total = 0;
+                                $keranjang = $connect->prepare("SELECT * FROM cart");
+                                $keranjang->execute();
+                                if ($keranjang->rowCount() > 0) {
+                                    foreach ($keranjang as $row) :
+                                ?>
+                                        <form action="" method="post">
+                                            <input type="hidden" name="cart_id" value="<?= $row['id']; ?>">
+                                            <div class="card me-3" style="width: 18rem;">
+                                                <img src="asset/<?= $row['foto_barang'] ?>" class=" card-img-top" alt="<?= $row['nama_barang'] ?>">
+                                                <h5 class="card-title fw-bold text-center"><?= $row['nama_barang'] ?></h5>
+                                                <div class="card-body">
+                                                    <h3 class="harga"><span>Rp.</span><?= $row['jumlah_harga'] ?></h3>
+                                                    <div class="input-group input-group-sm mb-3">
+                                                        <span class="input-group-text" id="inputGroup-sizing-sm">QTY</span>
+                                                        <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="<?= $row['jumlah_barang']; ?>" name="jumlah_barang">
+                                                        <button type="submit" class="btn1 btn-outline-dark" name="update_qty">
+                                                            <img src="http://cdn.onlinewebfonts.com/svg/img_386644.png" style="height:10px ">
+                                                        </button>
+                                                    </div>
+                                                    <h3 class="harga"><span>Harga total: Rp. <?= number_format($sub_total = ($row['jumlah_harga'] * $row['jumlah_barang'])); ?>,-</span></h3>
+                                                    <button type="submit" class="btn btn-info fw-bold text-center me-md-2" name="delete">Delete item</button>
                                                 </div>
-                                                <h3 class="harga"><span>Harga total: Rp.</span></h3>
-                                                <button type="submit" class="btn btn-info fw-bold text-center me-md-2" name="add_to_cart">Delete item</button>
                                             </div>
-                                        </div>
-                                    </form>
-                                <?php endforeach; ?>
+                                        </form>
+                                        
+                                    <?php 
+                                    $grand_total += $sub_total;
+                                    endforeach; 
+                                    ?>
+                                <?php
+                                } else {
+                                    echo "No product found!";
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -127,10 +165,9 @@ require 'connect.php';
                 </div>
             </div> -->
             <div class="cart-total">
-                <p>Total Biaya : <span>Rp ,-</span></p>
-                <!-- <?= number_format($grand_total); ?> -->
+                <p>Total Biaya : <span>Rp <?= number_format($grand_total); ?>,-</span></p>
                 <a href="shop.php" class="option-btn">Lanjut Belanja</a>
-                <a href="cart.php?delete_all" class="delete-btn <?= ($grand_total > 1) ? '' : 'disabled'; ?>" onclick="return confirm('delete all from cart?');">Hapus Semua Barang</a>
+                <a href="cart.php?delete_all" class="delete-btn <?= ($grand_total > 1) ? '' : 'disabled'; ?>" onclick="return confirm('Delete all from cart?');">Hapus Semua Barang</a>
                 <a href="checkout.php" class="btn <?= ($grand_total > 1) ? '' : 'disabled'; ?>">Lanjut Pembayaran</a>
             </div>
         </div>

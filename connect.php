@@ -1,3 +1,6 @@
-<?php 
-$connect = mysqli_connect("localhost", "root", "", "basdat-checkout");
+<?php
+$db_name = 'mysql:host=localhost;dbname=basdat-checkout';
+$user_name = 'root';
+$user_password = '';
+$connect = new PDO($db_name, $user_name, $user_password);
 ?>

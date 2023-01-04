@@ -1,3 +1,11 @@
+<?php
+require "connect.php";
+
+if (isset($_POST['payment_method'])) {
+    header('location:payment.php');
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -28,13 +36,36 @@
     <!-- tunggu rafly -->
     <section class="checkout">
         <h1 class="heading2"><span>Checkout Shop</span></h1>
-        <div class="card" style="width: 100%;">
-            <div class="card-body">
-                <h5 class="card-title">Ringkasan Belanja <?= date('d-m-Y'); ?></h5>
-                <p class="card-text">Total Tagihan: <span>Rp. </span></p>
-                <button type="submit" class="btn btn-success fw-bold text-center" name="payment_method">Payment Method</button>
+        <form action="" method="post">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <?php
+                    $total_barang = 0;
+                    $grand_total = 0;
+                    $keranjang = $connect->prepare("SELECT * FROM cart");
+                    $keranjang->execute();
+                    if ($keranjang->rowCount() > 0) {
+                        foreach ($keranjang as $row) :
+                    ?>
+                            <input type="hidden" name="cart_id" value="<?= $row['id']; ?>">
+                            <?php number_format($sub_total = ($row['jumlah_harga'] * $row['jumlah_barang'])); ?>
+
+                        <?php
+                            $grand_total += $sub_total;
+                            $total_barang += $row['jumlah_barang'];
+                        endforeach;
+                        ?>
+                    <?php
+                    } else {
+                        echo "No product found!";
+                    }
+                    ?>
+                    <p class="card-text">Total Harga (<?= $total_barang; ?> Barang) : <span>Rp. <?= number_format($grand_total); ?>,-</span></p>
+                    <p class="card-text">Ongkos Kirim: <span>Rp. 10.000,-</span></p>
+                    <button type="submit" class="btn btn-success fw-bold text-center" name="payment_method">Payment Method</button>
+                </div>
             </div>
-        </div>
+        </form>
     </section>
 
 

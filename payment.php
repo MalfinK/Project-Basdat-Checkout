@@ -1,3 +1,13 @@
+<?php
+require "connect.php";
+
+if (isset($_GET['delete_all'])) {
+    $delete_cart_item = $connect->prepare("DELETE FROM cart");
+    $delete_cart_item->execute();
+    header('location:shop.php');
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -31,6 +41,27 @@
         <form action="" method="post">
             <div class="card" style="width: 100%;">
                 <div class="card-body">
+                    <?php
+                    $total_barang = 0;
+                    $grand_total = 0;
+                    $keranjang = $connect->prepare("SELECT * FROM cart");
+                    $keranjang->execute();
+                    if ($keranjang->rowCount() > 0) {
+                        foreach ($keranjang as $row) :
+                    ?>
+                            <input type="hidden" name="cart_id" value="<?= $row['id']; ?>">
+                            <?php number_format($sub_total = ($row['jumlah_harga'] * $row['jumlah_barang'])); ?>
+
+                        <?php
+                            $grand_total += $sub_total;
+                            $total_barang += $row['jumlah_barang'];
+                        endforeach;
+                        ?>
+                    <?php
+                    } else {
+                        echo "No product found!";
+                    }
+                    ?>
                     <h5 class="card-title">Metode Pembayaran</h5>
                     <div class="input-group mb-3">
                         <select class="form-select" id="inputGroupSelect02">
@@ -42,7 +73,8 @@
                         <label class="input-group-text" for="inputGroupSelect02">Pilihan</label>
                     </div>
                     <h5 class="card-title"><b>Ringkasan Belanja Tanggal <?= date('d-m-Y'); ?></b></h5>
-                    <p class="card-text">Total Tagihan: <span>Rp. </span></p>
+                    <p class="card-text">Total Tagihan Semuanya: <span>Rp. <?= number_format($grand_total+10000); ?>,-</span></p>
+                    <a href="payment.php?delete_all" onclick="alert('PEMBAYARAN SUKSES!!!')" class="btn btn-primary" type="submit">Bayar</a>
                 </div>
             </div>
         </form>

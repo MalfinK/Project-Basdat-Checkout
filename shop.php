@@ -1,8 +1,41 @@
 <?php
 require 'connect.php';
 
-$sql = "SELECT * FROM produk";
-$produk = mysqli_query($connect, $sql);
+// $sql = "SELECT * FROM produk";
+// $produk = $connect->query($sql);
+
+if (isset($_POST['add_to_cart'])) {
+    $produk_id = $_POST['produk_id'];
+    $produk_id = filter_var($produk_id, FILTER_SANITIZE_STRING);
+    $nama_barang = $_POST['nama_barang'];
+    $nama_barang = filter_var($nama_barang, FILTER_SANITIZE_STRING);
+    $jumlah_barang = $_POST['jumlah_barang'];
+    $jumlah_barang = filter_var($jumlah_barang, FILTER_SANITIZE_STRING);
+    $jumlah_harga = $_POST['jumlah_harga'];
+    $jumlah_harga = filter_var($jumlah_harga, FILTER_SANITIZE_STRING);
+    $foto_barang = $_POST['foto_barang'];
+    $foto_barang = filter_var($foto_barang, FILTER_SANITIZE_STRING);
+
+    $check_cart_numbers = $connect->prepare("SELECT * FROM cart WHERE nama_barang = ?");
+    $check_cart_numbers->execute([$nama_barang]);
+
+    if ($check_cart_numbers->rowCount() > 0) {
+        echo "<script>alert('Item added to cart!')</script>";
+    } else {
+
+        // $check_wishlist_numbers = $conn->prepare("SELECT * FROM wishlist WHERE name = ? AND user_id = ?");
+        // $check_wishlist_numbers->execute([$name, $user_id]);
+
+        // if ($check_wishlist_numbers->rowCount() > 0) {
+        //     $delete_wishlist = $conn->prepare("DELETE FROM wishlist WHERE name = ? AND user_id = ?");
+        //     $delete_wishlist->execute([$name, $user_id]);
+        // }
+
+        $insert_cart = $connect->prepare("INSERT INTO cart(produk_id, nama_barang, jumlah_barang, jumlah_harga, foto_barang) VALUES(?,?,?,?,?)");
+        $insert_cart->execute([$produk_id, $nama_barang, $jumlah_barang, $jumlah_harga, $foto_barang]);
+        $message[] = 'added to cart!';
+    }
+}
 
 ?>
 
@@ -39,26 +72,41 @@ $produk = mysqli_query($connect, $sql);
             <div class="row">
                 <div class="col-xl-12">
                     <div class="d-flex justify-content-center">
-                        <?php foreach ($produk as $row) : ?>
-                            <form action="" method="post" enctype="multipart/form-data">
-                                <div class="card me-3" style="width: 18rem;">
-                                    <img src="asset/<?= $row['foto'] ?>" class=" card-img-top" alt="<?= $row['nama_produk'] ?>">
-                                    <div class="card-body">
-                                        <h5 class="card-title fw-bold"><?= $row['nama_produk'] ?></h5>
-                                        <div class="stars">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
+                        <?php
+                        $produk = $connect->prepare("SELECT * FROM produk");
+                        $produk->execute();
+                        if ($produk->rowCount() > 0) {
+                            foreach ($produk as $row) :
+                        ?>
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="produk_id" value="<?= $row['id']; ?>">
+                                    <input type="hidden" name="nama_barang" value="<?= $row['nama_produk']; ?>">
+                                    <input type="hidden" name="jumlah_barang" value="1">
+                                    <input type="hidden" name="jumlah_harga" value="<?= $row['harga_satuan']; ?>">
+                                    <input type="hidden" name="foto_barang" value="<?= $row['foto']; ?>">
+                                    <div class="card me-3" style="width: 18rem;">
+                                        <img src="asset/<?= $row['foto'] ?>" class=" card-img-top" alt="<?= $row['nama_produk'] ?>">
+                                        <div class="card-body">
+                                            <h5 class="card-title fw-bold"><?= $row['nama_produk'] ?></h5>
+                                            <div class="stars">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <p class="card-text text-justify"><?= $row['deskripsi_produk'] ?></p>
+                                            <h3 class="harga"><span>Rp.</span><?= $row['harga_satuan'] ?></h3>
+                                            <button type="submit" class="btn btn-info fw-bold text-center" name="add_to_cart">Add To Cart</button>
                                         </div>
-                                        <p class="card-text text-justify"><?= $row['deskripsi_produk'] ?></p>
-                                        <h3 class="harga"><span>Rp.</span><?= $row['harga_satuan'] ?></h3>
-                                        <a href="function.php?produk_id=<?= $row['id']; ?>" type="submit" class="btn btn-info fw-bold text-center" name="add_to_cart">Add To Cart</a>
                                     </div>
-                                </div>
-                            </form>
-                        <?php endforeach; ?>
+                                </form>
+                            <?php endforeach; ?>
+                        <?php 
+                            } else {
+                            echo "No product found!";
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
