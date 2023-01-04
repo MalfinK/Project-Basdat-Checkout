@@ -1,17 +1,17 @@
 <?php
 require 'connect.php';
 
-function query($query)
-{
-    global $connect;
-    $result = mysqli_query($connect, $query);
-    $rows = [];
-    while ($row = mysqli_fetch_assoc($result)) {
-        $rows[] = $row;
-    }
-    return $rows;
-}
-$produk = query("SELECT * FROM produk");
+// function query($query)
+// {
+//     global $connect;
+//     $result = mysqli_query($connect, $query);
+//     $rows = [];
+//     while ($row = mysqli_fetch_assoc($result)) {
+//         $rows[] = $row;
+//     }
+//     return $rows;
+// }
+// $produk = query("SELECT * FROM produk");
 
 ?>
 
@@ -36,8 +36,6 @@ $produk = query("SELECT * FROM produk");
 </head>
 
 <body>
-    <!-- <h1>Hello, world!</h1> -->
-
     <!-- navbar -->
     <?php require "navbar_user.php"; ?>
 
@@ -54,16 +52,6 @@ $produk = query("SELECT * FROM produk");
                                     <div class="card me-3" style="width: 18rem;">
                                         <img src="asset/<?= $row['foto'] ?>" class=" card-img-top" alt="<?= $row['nama_produk'] ?>">
                                         <div class="card-body">
-
-                                            <!-- <h5 class="card-title fw-bold"><?= $row['nama_produk'] ?></h5> -->
-                                            <!-- <div class="stars">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                        <p class="card-text text-justify"><?= $row['deskripsi_produk'] ?></p> -->
                                             <h3 class="harga"><span>Rp.</span><?= $row['harga_satuan'] ?></h3>
                                             <div class="input-group input-group-sm mb-3">
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">qty</span>
