@@ -26,8 +26,24 @@ section {
     font-weight: bold;
 }
 
+.heading {
+    padding-top: 2rem;
+    border-bottom: 0.2rem solid rgba(0, 0, 0, 0.3);
+    margin: 2rem auto;
+}
+
+.heading span {
+    font-size: 1.5rem;
+    padding: 1rem 5rem;
+    color: #fff;
+    background: var(--nav-color);
+    border-top-left-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+    display: inline-block;
+}
+
 /* content di shop.php */
-.card {
+.shop .card {
     margin-top: 3rem;
     padding: 1rem;
     border: 1px solid #ccc;
@@ -38,13 +54,15 @@ section {
     cursor: pointer;
 }
 
-.heading {
+/* content di payment.php */
+
+.payment .heading2 {
     padding-top: 2rem;
-    border-bottom: 0.2rem solid rgba(0, 0, 0, 0.3);
+    /* border-bottom: 0.2rem solid rgba(0, 0, 0, 0.3); */
     margin: 2rem auto;
 }
 
-.heading span {
+.payment .heading2 span {
     font-size: 1.5rem;
     padding: 1rem 5rem;
     color: #fff;
