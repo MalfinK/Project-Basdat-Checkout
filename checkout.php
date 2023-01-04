@@ -27,7 +27,7 @@
     <!-- checkout -->
     <!-- tunggu rafly -->
     <section class="checkout">
-        <h1 class="heading"><span>Checkout Shop</span></h1>
+        <h1 class="heading2"><span>Checkout Shop</span></h1>
         <div class="card" style="width: 100%;">
             <div class="card-body">
                 <h5 class="card-title">Ringkasan Belanja <?= date('d-m-Y'); ?></h5>

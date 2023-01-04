@@ -1,17 +1,8 @@
 <?php
 require 'connect.php';
 
-function query($query)
-{
-    global $connect;
-    $result = mysqli_query($connect, $query);
-    $rows = [];
-    while ($row = mysqli_fetch_assoc($result)) {
-        $rows[] = $row;
-    }
-    return $rows;
-}
-$produk = query("SELECT * FROM produk");
+$sql = "SELECT * FROM produk";
+$produk = mysqli_query($connect, $sql);
 
 ?>
 

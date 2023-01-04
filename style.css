@@ -32,7 +32,13 @@ section {
     margin: 2rem auto;
 }
 
-.heading span {
+.heading2 {
+    padding-top: 2rem;
+    /* border-bottom: 0.2rem solid rgba(0, 0, 0, 0.3); */
+    margin: 2rem auto;
+}
+
+.heading2 span {
     font-size: 1.5rem;
     padding: 1rem 5rem;
     color: #fff;
@@ -42,27 +48,7 @@ section {
     display: inline-block;
 }
 
-/* content di shop.php */
-.shop .card {
-    margin-top: 3rem;
-    padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-    transition: all 0.3s ease-out;
-    cursor: pointer;
-}
-
-/* content di payment.php */
-
-.payment .heading2 {
-    padding-top: 2rem;
-    /* border-bottom: 0.2rem solid rgba(0, 0, 0, 0.3); */
-    margin: 2rem auto;
-}
-
-.payment .heading2 span {
+.heading span {
     font-size: 1.5rem;
     padding: 1rem 5rem;
     color: #fff;
@@ -121,6 +107,18 @@ body {
     width: 100%;
     height: 100%;
     /* object-fit: cover; */
+}
+
+/* content di shop.php */
+.shop .card {
+    margin-top: 3rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    transition: all 0.3s ease-out;
+    cursor: pointer;
 }
 
 /* content di cart.php */

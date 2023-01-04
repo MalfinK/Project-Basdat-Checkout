@@ -27,6 +27,25 @@
     <!-- payment -->
     <section class="payment">
         <h1 class="heading2"><span>Payment Method</span></h1>
+
+        <form action="" method="post">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title">Metode Pembayaran</h5>
+                    <div class="input-group mb-3">
+                        <select class="form-select" id="inputGroupSelect02">
+                            <option selected>Choose...</option>
+                            <option value="1">BRI</option>
+                            <option value="2">Mandiri</option>
+                            <option value="3">COD</option>
+                        </select>
+                        <label class="input-group-text" for="inputGroupSelect02">Pilihan</label>
+                    </div>
+                    <h5 class="card-title"><b>Ringkasan Belanja Tanggal <?= date('d-m-Y'); ?></b></h5>
+                    <p class="card-text">Total Tagihan: <span>Rp. </span></p>
+                </div>
+            </div>
+        </form>
     </section>
 
     <!-- bootstrap -->
