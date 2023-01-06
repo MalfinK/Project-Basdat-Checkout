@@ -87,7 +87,7 @@ if (isset($_POST['add_to_cart'])) {
                                                 <i class="fa-solid fa-star"></i>
                                             </div>
                                             <p class="card-text text-justify"><?= $row['deskripsi_produk'] ?></p>
-                                            <h3 class="harga"><span>Rp.</span><?= $row['harga_satuan'] ?></h3>
+                                            <h3 class="harga"><span>Rp. </span><?= number_format($row['harga_satuan'], 0, "", ",") ?></h3>
                                             <button type="submit" class="btn btn-info fw-bold text-center" name="add_to_cart">Add To Cart</button>
                                         </div>
                                     </div>

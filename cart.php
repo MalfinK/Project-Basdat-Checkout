@@ -82,7 +82,7 @@ if (isset($_POST['update_qty'])) {
                                                 <img src="asset/<?= $row['foto_barang'] ?>" class=" card-img-top" alt="<?= $row['nama_barang'] ?>">
                                                 <h5 class="card-title fw-bold text-center"><?= $row['nama_barang'] ?></h5>
                                                 <div class="card-body">
-                                                    <h3 class="harga"><span>Rp.</span><?= $row['jumlah_harga'] ?></h3>
+                                                    <h3 class="harga"><span>Rp. </span><?= number_format($row['jumlah_harga'], 0, "", ",") ?></h3>
                                                     <div class="input-group input-group-sm mb-3">
                                                         <span class="input-group-text" id="inputGroup-sizing-sm">QTY</span>
                                                         <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="<?= $row['jumlah_barang']; ?>" name="jumlah_barang">
