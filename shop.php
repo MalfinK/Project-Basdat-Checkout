@@ -20,20 +20,11 @@ if (isset($_POST['add_to_cart'])) {
     $check_cart_numbers->execute([$nama_barang]);
 
     if ($check_cart_numbers->rowCount() > 0) {
-        echo "<script>alert('Item added to cart!')</script>";
+        echo "<script>alert('Item already added to cart!')</script>";
     } else {
-
-        // $check_wishlist_numbers = $conn->prepare("SELECT * FROM wishlist WHERE name = ? AND user_id = ?");
-        // $check_wishlist_numbers->execute([$name, $user_id]);
-
-        // if ($check_wishlist_numbers->rowCount() > 0) {
-        //     $delete_wishlist = $conn->prepare("DELETE FROM wishlist WHERE name = ? AND user_id = ?");
-        //     $delete_wishlist->execute([$name, $user_id]);
-        // }
-
         $insert_cart = $connect->prepare("INSERT INTO cart(produk_id, nama_barang, jumlah_barang, jumlah_harga, foto_barang) VALUES(?,?,?,?,?)");
         $insert_cart->execute([$produk_id, $nama_barang, $jumlah_barang, $jumlah_harga, $foto_barang]);
-        $message[] = 'added to cart!';
+        echo "<script>alert('Item added to cart!')</script>";
     }
 }
 
